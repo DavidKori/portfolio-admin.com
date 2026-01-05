@@ -1,0 +1,1 @@
+const r=t=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(t).toLowerCase()),s=t=>t?/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(String(t).toLowerCase()):!0,a=t=>/^[\+]?[1-9][\d]{0,15}$/.test(t.replace(/[\s\(\)\-]/g,""));export{a,s as b,r as v};
