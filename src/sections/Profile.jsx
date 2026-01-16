@@ -92,7 +92,7 @@ const Profile = () => {
               <FormField
                 label="Full Name"
                 value={profile.fullName || ""}
-                onChange={(value) => handleChange('name', value)}
+                onChange={(value) => handleChange('fullName', value)}
                 required
                 placeholder="John Doe"
               />
@@ -100,7 +100,7 @@ const Profile = () => {
               <FormField
                 label="Professional Title"
                 value={profile.professionalTitle || ""}
-                onChange={(value) => handleChange('title', value)}
+                onChange={(value) => handleChange('professionalTitle', value)}
                 required
                 placeholder="Senior Full Stack Developer"
               />

@@ -100,7 +100,7 @@
 
 .change-file-btn {
   background-color: white;
-  color: var(--text-primary);
+  color: var(--btn-primary);
   padding: 10px 20px;
   border-radius: var(--radius);
   font-weight: 500;
