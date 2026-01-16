@@ -25,7 +25,7 @@ const Profile = () => {
     try {
       const response = await profileAPI.get();
       setProfile(response.data || profile);
-      console.log(response.data)
+      // console.log(response.data)
     } catch (error) {
       console.error('Failed to fetch profile:', error);
     } finally {
