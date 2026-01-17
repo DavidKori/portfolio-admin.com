@@ -5,16 +5,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import { useToast } from '../hooks/useToast';
 import Loader from '../components/Loader';
 import '../styles/section.css';
-import { formatFileSize } from '../utils/helpers';
 
-// Category options matching your enum
-// const CATEGORY_OPTIONS = [
-//   { value: 'Frontend', label: 'Frontend' },
-//   { value: 'Backend', label: 'Backend' },
-//   { value: 'Database', label: 'Database' },
-//   { value: 'Tools', label: 'Tools' },
-//   { value: 'Other', label: 'Other' }
-// ];
 const CATEGORY_OPTIONS = [
   { value: 'Frontend', label: 'Frontend' },
   { value: 'Backend', label: 'Backend' },
@@ -40,58 +31,7 @@ const LEVEL_OPTIONS = [
   { value: 'Expert', label: 'Expert' }
 ];
 
-// Common icon URLs for skills (optional pre-filled suggestions)
-// const COMMON_ICONS = {
-//   'Frontend': [
-//     { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/react.svg' },
-//     { name: 'Vue.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/vuedotjs.svg' },
-//     { name: 'Angular', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/angular.svg' },
-//     { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/javascript.svg' },
-//     { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/typescript.svg' },
-//     { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/html5.svg' },
-//     { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/css3.svg' },
-//     { name: 'Sass', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/sass.svg' },
-//     { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/tailwindcss.svg' },
-//   ],
-//   'Backend': [
-//     { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/nodedotjs.svg' },
-//     { name: 'Express', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/express.svg' },
-//     { name: 'Python', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/python.svg' },
-//     { name: 'Django', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/django.svg' },
-//     { name: 'Java', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/java.svg' },
-//     { name: 'Spring', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/spring.svg' },
-//     { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/php.svg' },
-//     { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/laravel.svg' },
-//     { name: 'Ruby', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/ruby.svg' },
-//     { name: 'Rails', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/rubyonrails.svg' },
-//     { name: 'Go', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/go.svg' },
-//   ],
-//   'Database': [
-//     { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/mongodb.svg' },
-//     { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/mysql.svg' },
-//     { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/postgresql.svg' },
-//     { name: 'Redis', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/redis.svg' },
-//     { name: 'SQLite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/sqlite.svg' },
-//     { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/firebase.svg' },
-//   ],
-//   'Tools': [
-//     { name: 'Git', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/git.svg' },
-//     { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg' },
-//     { name: 'Docker', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/docker.svg' },
-//     { name: 'AWS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/amazonaws.svg' },
-//     { name: 'Azure', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/microsoftazure.svg' },
-//     { name: 'Heroku', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/heroku.svg' },
-//     { name: 'Nginx', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/nginx.svg' },
-//     { name: 'Webpack', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/webpack.svg' },
-//     { name: 'Vite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/vite.svg' },
-//   ],
-//   'Other': [
-//     { name: 'Figma', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/figma.svg' },
-//     { name: 'Photoshop', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/adobephotoshop.svg' },
-//     { name: 'Illustrator', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/adobeillustrator.svg' },
-//     { name: 'Linux', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/linux.svg' },
-//   ]
-// };
+
 const COMMON_ICONS = {
   'Frontend': [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/react.svg' },
