@@ -46,7 +46,7 @@ const FormField = ({
           onClick={() => { size===1 ? setSize(5) : setSize(1)}}
           onFocus={() => setSize(5)}
           onBlur={() => setSize(1)}
-          onChange={(e) => {onChange && onChange(e.target.value);setTimeout(() => {setSize(1)},500)}}
+          onChange={(e) => {onChange && onChange(e.target.value);setTimeout(() => {setSize(1)},100)}}
           required={required}
           className={`form-select ${error ? 'error' : ''}`}
           {...props}
