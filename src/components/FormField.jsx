@@ -5,7 +5,7 @@ const FormField = ({
   label, 
   type = 'text', 
   value, 
-  onChange, 
+  onChange,
   placeholder, 
   required = false,
   error,
@@ -19,6 +19,7 @@ const FormField = ({
   const inputId = React.useId();
   const safeLabel = label || '';
   const fieldId = `input-${inputId}-${safeLabel.toLowerCase().replace(/\s+/g, '-')}`;
+   const [size, setSize] = React.useState(1);
 
   const renderInput = () => {
     if (multiline) {
@@ -41,7 +42,11 @@ const FormField = ({
         <select
           id={fieldId}
           value={value || ''}
-          onChange={(e) => onChange && onChange(e.target.value)}
+          size={size}
+          onClick={() => { size===1 ? setSize(5) : setSize(1)}}
+          onFocus={() => setSize(5)}
+          onBlur={() => setSize(1)}
+          onChange={(e) => {onChange && onChange(e.target.value)}}
           required={required}
           className={`form-select ${error ? 'error' : ''}`}
           {...props}
