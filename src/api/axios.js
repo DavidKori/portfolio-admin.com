@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_BASE_URL = 'http://localhost:5000/api';
-const API_BASE_URL = 'https://portfolio-backend-xvu9.onrender.com/api';
+const API_BASE_URL = 'http://localhost:5000/api';
+// const API_BASE_URL = 'https://portfolio-backend-xvu9.onrender.com/api';
 
 // Create axios instance
 const api = axios.create({
@@ -82,12 +82,12 @@ export const skillsAPI = {
 };
 
 export const projectsAPI = {
-  getAll: () => api.get('/projects'),
+  getAll: () => api.get(`/projects/all`),
   get: (id) => api.get(`/projects/${id}`),
   create: (data) => api.post('/projects', data),
   update: (id, data) => api.put(`/projects/${id}`, data),
   delete: (id) => api.delete(`/projects/${id}`),
-  uploadMedia: (formData) => api.post(`/upload/project/${id}`, formData, {
+  uploadMedia: (formData) => api.post(`/upload/project`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
 };

@@ -146,7 +146,7 @@ const MediaUploader = ({ onUpload, accept = 'image/*', label, existingUrl }) => 
             rel="noopener noreferrer"
             className="url-link"
           >
-            {existingUrl.substring(0, 50)}...
+            {/* {existingUrl.subtring(0, 50)}... don't delete this comment */}
           </a>
         </div>
       )}

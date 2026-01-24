@@ -1,0 +1,422 @@
+/* CSS Variables for Light/Dark Mode Compatibility */
+:root {
+  /* Light Mode (Default) */
+  --toggle-bg-off: #e5e7eb;
+  --toggle-bg-on: #3b82f6;
+  --toggle-thumb: #ffffff;
+  --toggle-text-on: #ffffff;
+  --toggle-text-off: #6b7280;
+  --toggle-border: #d1d5db;
+  --toggle-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --toggle-disabled-bg: #f3f4f6;
+  --toggle-disabled-text: #9ca3af;
+  --toggle-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --toggle-bg-off: #374151;
+  --toggle-bg-on: #60a5fa;
+  --toggle-thumb: #1f2937;
+  --toggle-text-on: #f9fafb;
+  --toggle-text-off: #9ca3af;
+  --toggle-border: #4b5563;
+  --toggle-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --toggle-disabled-bg: #111827;
+  --toggle-disabled-text: #6b7280;
+}
+
+/* Toggle Wrapper */
+.toggle-button-wrapper {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Base Toggle Button */
+.toggle-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: var(--toggle-transition);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.toggle-button:focus-visible {
+  outline: 2px solid var(--toggle-bg-on);
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+.toggle-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Toggle Track */
+.toggle-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--toggle-bg-off);
+  border-radius: 9999px;
+  transition: var(--toggle-transition);
+  overflow: hidden;
+  box-shadow: var(--toggle-shadow);
+  border: 1px solid var(--toggle-border);
+}
+
+.toggle-button.on .toggle-track {
+  background-color: var(--toggle-bg-on);
+}
+
+.toggle-button:disabled .toggle-track {
+  background-color: var(--toggle-disabled-bg);
+  border-color: var(--toggle-disabled-text);
+}
+
+/* Toggle Content (Labels/Icons) */
+.toggle-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--toggle-transition);
+  color: var(--toggle-text-off);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.toggle-content.on-content {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.toggle-content.off-content {
+  opacity: 1;
+}
+
+.toggle-button.on .toggle-content.on-content {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--toggle-text-on);
+}
+
+.toggle-button.on .toggle-content.off-content {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.toggle-button:disabled .toggle-content {
+  color: var(--toggle-disabled-text);
+}
+
+/* Toggle Icons */
+.toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  line-height: 1;
+}
+
+.toggle-label {
+  font-size: 0.875em;
+  line-height: 1;
+  margin: 0 2px;
+}
+
+/* Toggle Thumb */
+.toggle-thumb {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--toggle-thumb);
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: var(--toggle-transition);
+  z-index: 10;
+  border: 1px solid var(--toggle-border);
+}
+button[aria-label='Toggle off'] .toggle-thumb {
+    margin-left: 10px;
+}
+button[aria-label='Toggle on'] .toggle-thumb {
+    margin-left:0px;
+}
+.off-content{
+    right: 2px;
+    position: absolute;
+
+}
+.on-content{
+    left: 5px;
+    position: absolute;
+
+}
+.toggle-button.on .toggle-thumb {
+  transform: translateX(100%);
+}
+
+.toggle-thumb-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  line-height: 1;
+}
+
+/* Size Variations */
+.toggle-button-wrapper[data-size="small"] .toggle-button {
+  font-size: 12px;
+}
+
+.toggle-button-wrapper[data-size="medium"] .toggle-button {
+  font-size: 14px;
+}
+
+.toggle-button-wrapper[data-size="large"] .toggle-button {
+  font-size: 16px;
+}
+
+/* Small */
+.toggle-button-wrapper[data-size="small"] .toggle-track {
+  width: 44px;
+  height: 22px;
+  padding: 0 4px;
+}
+
+.toggle-button-wrapper[data-size="small"] .toggle-thumb {
+  width: 18px;
+  height: 18px;
+  left: 2px;
+}
+
+.toggle-button-wrapper[data-size="small"].on .toggle-thumb {
+  left: calc(100% - 20px);
+}
+
+/* Medium */
+.toggle-button-wrapper[data-size="medium"] .toggle-track {
+  width: 60px;
+  height: 28px;
+  padding: 0 6px;
+}
+
+.toggle-button-wrapper[data-size="medium"] .toggle-thumb {
+  width: 22px;
+  height: 22px;
+  left: 3px;
+}
+
+.toggle-button-wrapper[data-size="medium"].on .toggle-thumb {
+  left: calc(100% - 25px);
+}
+
+/* Large */
+.toggle-button-wrapper[data-size="large"] .toggle-track {
+  width: 76px;
+  height: 34px;
+  padding: 0 8px;
+}
+
+.toggle-button-wrapper[data-size="large"] .toggle-thumb {
+  width: 26px;
+  height: 26px;
+  left: 4px;
+}
+
+.toggle-button-wrapper[data-size="large"].on .toggle-thumb {
+  left: calc(100% - 30px);
+}
+
+/* Variant Styles */
+.toggle-button-wrapper[data-variant="rounded"] .toggle-track {
+  border-radius: 9999px;
+}
+
+.toggle-button-wrapper[data-variant="rounded"] .toggle-thumb {
+  border-radius: 9999px;
+}
+
+.toggle-button-wrapper[data-variant="square"] .toggle-track {
+  border-radius: 6px;
+}
+
+.toggle-button-wrapper[data-variant="square"] .toggle-thumb {
+  border-radius: 4px;
+}
+
+.toggle-button-wrapper[data-variant="compact"] .toggle-track {
+  width: 40px;
+  height: 20px;
+  padding: 0;
+}
+
+.toggle-button-wrapper[data-variant="compact"] .toggle-thumb {
+  width: 16px;
+  height: 16px;
+}
+
+.toggle-button-wrapper[data-variant="compact"] .toggle-content {
+  display: none;
+}
+
+/* Modern variant */
+.toggle-button-wrapper[data-variant="modern"] .toggle-track {
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  border: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .toggle-button-wrapper[data-variant="modern"] .toggle-track {
+  background: linear-gradient(145deg, #2d3748, #4b5563);
+}
+
+.toggle-button-wrapper[data-variant="modern"] .toggle-thumb {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+/* Example Layout Styles */
+.app {
+  padding: 20px;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app.light {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.app.dark {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+.toggle-examples {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px;
+  background: var(--toggle-thumb);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app.dark .toggle-examples {
+  background: #1f2937;
+}
+
+.toggle-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.app.dark .toggle-group {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.toggle-group label {
+  font-weight: 500;
+  margin-right: 16px;
+  min-width: 140px;
+}
+
+/* Animation States */
+.toggle-button {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.toggle-thumb {
+  animation: thumbBounce 0.3s ease;
+}
+
+@keyframes thumbBounce {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .toggle-thumb {
+  right: 3px;
+  left: auto;
+}
+
+[dir="rtl"].on .toggle-thumb {
+  right: calc(100% - 25px);
+  left: auto;
+}
+
+
+
+
+/* Print Styles */
+@media print {
+  .toggle-button {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .toggle-track {
+    border: 2px solid currentColor;
+  }
+  
+  .toggle-thumb {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .toggle-button,
+  .toggle-track,
+  .toggle-thumb,
+  .toggle-content {
+    transition: none;
+  }
+  
+  .toggle-thumb {
+    animation: none;
+    
+  }
+}
+
+
+
+
+.toggle-button-wrapper {
+    position: relative;
+}
+.publish-modal {
+    position: absolute;
+}

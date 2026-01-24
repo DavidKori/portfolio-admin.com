@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import { useToast } from '../hooks/useToast';
 import '../styles/section.css';
 
+
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [editingProject, setEditingProject] = useState(null);
@@ -16,19 +17,27 @@ const Projects = () => {
   const [projectToDelete, setProjectToDelete] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const { showSuccess, showError } = useToast();
+  const [publishModal,setPublishModal] = useState("false");
+  const [projectToPUblish,setProjectToPublish] = useState("")
+
+    const [publish,setPublish] = useState({
+    status:"draft"
+    })
 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     techStack: '',
     imageUrl: '',
+    images:[''],
     videoUrl: '',
     liveUrl: '',
-    githubUrl: ''
+    githubUrl: '',
   });
 
   useEffect(() => {
     fetchProjects();
+    setPublishModal(false)
   }, []);
 
   const fetchProjects = async () => {
@@ -49,13 +58,14 @@ const Projects = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleArrayInput = (field, value) => {
-    const array = value.split(',').map(item => item.trim()).filter(item => item);
-    handleInputChange(field, array);
-  };
+  // const handleArrayInput = (field, value) => {
+  //   const array = value.split(',').map(item => item.trim()).filter(item => item);
+  //   handleInputChange(field, array);
+  // };
 
   const handleImageUpload = async (formData) => {
     setUploadingImage(true);
+    
     try {
       const response = await projectsAPI.uploadMedia(formData);
       handleInputChange('imageUrl', response.data.url);
@@ -68,7 +78,10 @@ const Projects = () => {
       setUploadingImage(false);
     }
   };
-
+  // const TogglePublish = (project) => {
+  //   setEditingProject(project);
+  //   setFormData(project.status==="draft" ? "published" : "draft")
+  // }
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -109,9 +122,10 @@ const Projects = () => {
       imageUrl: project.imageUrl || '',
       videoUrl: project.videoUrl || '',
       liveUrl: project.liveUrl || '',
-      githubUrl: project.githubUrl || ''
+      githubUrl: project.githubUrl || '',
     });
     setShowForm(true);
+
   };
 
   const handleDelete = async () => {
@@ -119,7 +133,8 @@ const Projects = () => {
     
     try {
       await projectsAPI.delete(projectToDelete._id);
-      setProjects(prev => prev.filter(p => p._id !== projectToDelete._id));
+      setProjects(prev => prev.filter(p => p._id === projectToDelete._id));
+      
       showSuccess('Project deleted successfully');
     } catch (error) {
       console.error('Failed to delete project:', error);
@@ -129,6 +144,29 @@ const Projects = () => {
       setShowDeleteModal(false);
     }
   };
+      const handlePublish = async () => {
+      if (!projectToPUblish) return;
+
+        const showStatus =!projectToPUblish.status 
+        const newStatus = publish.status === 'draft' || publish.status!=="published" ? 'published' : 'draft';
+        setPublish({status:newStatus});
+      try {
+       const response = await projectsAPI.update(projectToPUblish._id,publish);
+        // setProjects(prev => prev.filter(p => p._id !== projectToPUblish._id));
+                setProjects(prev => prev.map(p => 
+          p._id === projectToPUblish._id ? response.data : p
+          
+        ));
+        response.data.status === "published" ? showSuccess('Project published successfully') : showSuccess('Project unpublished successfully');
+      } catch (error) {
+        console.error(response.data.status === "published" ?'Failed to unpublish project' :'Failed to publish project', error);
+        response.data.status === "published" ? showError('Failed to unpublish project') : showError('Failed to publish project');
+        // showError('Failed to publish project');
+      } finally {
+        // setProjectToPublish(null);
+        setPublishModal(false);
+      }
+    };
 
   const resetForm = () => {
     setFormData({
@@ -138,7 +176,7 @@ const Projects = () => {
       imageUrl: '',
       videoUrl: '',
       liveUrl: '',
-      githubUrl: ''
+      githubUrl: '',
     });
     setEditingProject(null);
   };
@@ -321,6 +359,18 @@ const Projects = () => {
                     >
                       Delete
                     </button>
+                    
+                    <button 
+                      className="btn-edit"
+                      onClick={() => {
+                        setProjectToPublish(project)
+                        setPublishModal(true)
+
+                      }}
+                    >
+                    {project.status === "draft" ? "publish" : "unpublish"}
+
+                    </button>                      
                   </div>
                 </div>
               </div>
@@ -351,6 +401,14 @@ const Projects = () => {
         message="Are you sure you want to delete this project? This action cannot be undone."
         confirmText="Delete Project"
       />
+      <ConfirmModal
+              isOpen={publishModal}
+              onClose={() => setPublishModal(false)}
+              onConfirm={handlePublish}
+              title={projectToPUblish.status==="draft" ? "publish project":"unpublish project"}
+              message={projectToPUblish.status==="draft" ? "when you publish it will show in the client side":"when you unpublish only YOU will be able to see the project"}
+              confirmText={projectToPUblish.status==="draft" ? "publish":"unpublish"}
+            />
     </div>
   );
 };

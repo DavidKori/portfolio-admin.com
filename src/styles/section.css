@@ -176,6 +176,12 @@
     flex: 1;
   }
 }
+@media (max-width: 273px) {
+  .item-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 
 /* Grid layouts */
 .grid-2 {
