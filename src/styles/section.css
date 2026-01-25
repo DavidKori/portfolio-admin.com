@@ -544,6 +544,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 10px;
 }
 
 .list-item-content {
@@ -555,6 +556,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+  padding-right: 5px;
+  flex-wrap: wrap;
 }
 
 .list-item-title {
@@ -591,7 +594,27 @@
   display: flex;
   gap: 8px;
 }
-
+@media screen and (max-width:167px){
+ .list-item-actions{
+  flex-wrap: wrap;
+  justify-content: center;
+ }
+}
+@media screen and (max-width:748px){
+ .list-item{
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+ }
+}
+@media screen and (max-width:331px){
+.form-card {
+  padding: 0px;
+}
+.list-item{
+  padding: 5px;
+}
+}
 /* Blog card specific */
 .blog-card {
   display: flex;

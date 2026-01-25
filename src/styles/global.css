@@ -136,3 +136,19 @@ select {
   overflow-y: auto !important;
 
 }
+
+@media screen and (max-width:331px){
+.media-uploader{
+  padding: 0px;
+
+}
+.upload-area{
+  padding: 0px !important;
+  margin: 0px !important;
+  color: #3a56d4 !important;
+}
+.mobile-menu-btn{
+  opacity: .8;
+
+}
+}

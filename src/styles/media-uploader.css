@@ -154,3 +154,15 @@
     height: 150px;
   }
 }
+@media screen and (max-width:331px){
+  .media-uploader {
+    margin: auto;
+  }
+.upload-area {
+  width: 90vw;
+  margin:auto !important;
+}
+.uploader-label {
+  margin-left: 10px;
+}
+}

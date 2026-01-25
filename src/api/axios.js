@@ -103,11 +103,12 @@ export const achievementsAPI = {
 };
 
 export const educationAPI = {
+  
   getAll: () => api.get('/education'),
   create: (data) => api.post('/education', data),
   update: (id, data) => api.put(`/education/${id}`, data),
   delete: (id) => api.delete(`/education/${id}`),
-  uploadCertificate: (formData) => api.post(`/upload/education/certificate/${id}`, formData, {
+  uploadCertificate: (formData) => api.post(`/upload/education/certificate`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
 };

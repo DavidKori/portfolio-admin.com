@@ -114,7 +114,6 @@ const Education = () => {
       institution: '',
       period: '',
       description: '',
-      certificateUrl: ''
     });
     setEditingItem(null);
   };
