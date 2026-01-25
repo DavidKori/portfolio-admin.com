@@ -428,6 +428,7 @@
 }}
 
 /* Timeline for experience */
+
 .timeline {
   position: relative;
   padding-left: 30px;
@@ -437,7 +438,11 @@
   position: relative;
   margin-bottom: 30px;
 }
-
+.timeline-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 .timeline-marker {
   position: absolute;
   left: -30px;
@@ -505,7 +510,25 @@
   margin-bottom: 8px;
   line-height: 1.5;
 }
-
+@media screen and (max-width:331px){
+  .timeline-header{
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width:232px){
+  .timeline-actions {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.timeline{
+ padding-left: 20px;
+}
+}
+@media screen and (max-width:167px){
+ .timeline-content {
+  padding-left: 5px;
+}
+}
 /* Items list view */
 .items-list {
   display: flex;
