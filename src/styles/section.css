@@ -946,6 +946,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  
 }
 
 .messages-container {
@@ -959,6 +960,7 @@
   cursor: pointer;
   transition: var(--transition);
   position: relative;
+  margin-bottom: 5px;
 }
 
 .message-item:hover {
