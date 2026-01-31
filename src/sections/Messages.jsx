@@ -134,7 +134,7 @@ const Messages = () => {
           <div className="search-filter">
             <input
               type="text"
-              placeholder="Search messages..."
+              placeholder=" 🔍 Search messages..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -257,7 +257,7 @@ const Messages = () => {
                     rel="noopener noreferrer"
                     class="reply-btn"
                   >
-                    ✉️ Reply via Email
+                    Reply via Email
                   </a>
 
                   <button
@@ -267,7 +267,7 @@ const Messages = () => {
                       setShowDeleteModal(true);
                     }}
                   >
-                    Delete Message
+                    Delete
                   </button>
                 </div>
               </div>

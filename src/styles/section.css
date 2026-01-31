@@ -911,8 +911,18 @@
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
+.search-input {
+  height: 40px;
+  padding: 5px 2px;
+  width: auto;
+  border-radius: 5px;
+}
+.search-input:focus {
+  outline: none;
+}
 .filter-select {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
@@ -1181,7 +1191,95 @@
     min-height: 400px;
   }
 }
+@media (max-width: 768px) {
 
+.status-badge {
+  width: 60px;
+  text-align: center;
+  margin-left: 0px;
+}
+}
+@media (max-width: 505px) {
+.search-input {
+  width: 90vw;
+  margin: auto;
+}
+}
+@media (max-width: 368px) {
+.btn-delete,.reply-btn {
+margin: 0px;
+padding: 5px;
+font-size: 0.7rem;
+font-weight: bolder;
+}
+}
+@media (max-width: 355px) {
+.message-header {
+  flex-wrap: wrap;
+}
+}
+@media (max-width: 300px) {
+.filter-select{
+width: 20vw !important;
+font-size: 0.7rem;
+padding:4px;
+}
+.btn-secondary {
+  width: 40vw;
+font-size: 0.6rem;
+padding: 4px
+}
+}
+@media (max-width: 260px) {
+
+  .detail-card {
+    padding: 5px;
+  }
+  .detail-actions {
+    justify-content:end;
+  }
+  .detail-header h3 {
+    font-size: 0.7rem !important;
+  }
+  .detail-meta,.detail-content {
+    padding: 0px;
+  }
+  .meta-item {
+    width: 80%;
+    text-wrap: wrap;
+  }
+
+}
+@media (max-width: 188px) {
+.message-sender,.message-time {
+text-wrap: wrap;
+}
+.sender-email {
+  display: flex;
+ text-wrap: wrap !important;
+}
+.message-item {
+  padding: 0px;
+}
+}
+@media (max-width: 183px) {
+.search-input {
+  width: 80vw;
+}
+.meta-item {
+  font-size:.6rem !important;
+  width: 60%;
+}
+
+}
+@media (max-width: 160px) {
+.sender-email{
+  font-size: .7rem;
+}
+.sender-name {
+  font-size: 0.8rem;
+}
+}
 
 
 /* Skills Section Specific Styles */
