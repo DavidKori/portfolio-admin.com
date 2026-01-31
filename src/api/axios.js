@@ -177,7 +177,7 @@ export const messagesAPI = {
   getAll: () => api.get('/messages'),
   get: (id) => api.get(`/messages/${id}`),
   delete: (id) => api.delete(`/messages/${id}`),
-  markAsRead: (id) => api.put(`/messages/${id}/read`),
+  markAsRead: (id) => api.put(`/messages/${id}/read`,{read:true}),
 };
 
 export default api;
