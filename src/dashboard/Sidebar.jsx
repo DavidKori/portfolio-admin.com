@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/sidebar.css';
+import { messagesAPI } from '../api/axios';
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
+  
+    const [unreadMessagesLength,setUnreadMessagesLength] = useState(0)
+  
+    useEffect(() => {
+      fetchMessages();
+    }, []);
+  setInterval(() => {
+      fetchMessages();
+  },500)
+    const fetchMessages = async () => {
+      try {
+        const response1 = await messagesAPI.getUnread();
+          setUnreadMessagesLength(response1.data.length || 0);
+        setUnreadMessagesLength(response1.data.length || 0);
+      } catch (error) {
+        console.error('Failed to fetch messages:', error);
+      }
+    };
 
   const menuItems = [
     { path: '/dashboard', icon: '🏠', label: 'Dashboard' },
@@ -24,7 +43,7 @@ const Sidebar = () => {
     { path: '/dashboard/resume', icon: '📄', label: 'Resume' },
     { path: '/dashboard/contact', icon: '📱', label: 'Contact' },
     { path: '/dashboard/social-links', icon: '🔗', label: 'Social Links' },
-    { path: '/dashboard/messages', icon: '✉️', label: 'Messages' },
+    { path: '/dashboard/messages', icon: '✉️', label: 'Messages' ,news:`${unreadMessagesLength}`},
   ];
 
   const handleLogout = () => {
@@ -103,6 +122,7 @@ const Sidebar = () => {
             >
               <span className="nav-icon">{item.icon}</span>
               {!collapsed && <span className="nav-label">{item.label}</span>}
+              {unreadMessagesLength !== 0 && item.news && !collapsed &&<span className='news-count'>{unreadMessagesLength}</span>}
             </NavLink>
           ))}
         </nav>

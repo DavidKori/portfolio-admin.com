@@ -86,6 +86,7 @@ const Messages = () => {
       await Promise.all(unreadMessages.map(msg => messagesAPI.markAsRead(msg._id)));
       
       setMessages(prev => prev.map(msg => ({ ...msg, read: true })));
+      setUnreadMessagesLength(0);
       showSuccess('All messages marked as read');
     } catch (error) {
       showError('Failed to mark all messages as read');
@@ -98,6 +99,9 @@ const Messages = () => {
     try {
       await messagesAPI.delete(messageToDelete._id);
       setMessages(prev => prev.filter(msg => msg._id !== messageToDelete._id));
+      if (!messageToDelete.read){
+        setUnreadMessagesLength(unreadMessagesLength - 1);
+      }
       showSuccess('Message deleted successfully');
       
       // If we're viewing the message being deleted, clear the view
@@ -118,7 +122,7 @@ const Messages = () => {
     // Mark as read if it's unread
     if (!message.read) {
       await handleMarkAsRead(message._id);
-      setUnreadMessagesLength(unreadMessagesLength-1)
+      setUnreadMessagesLength(unreadMessagesLength-1);
     }
   };
 

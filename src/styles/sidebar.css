@@ -90,6 +90,7 @@
   text-decoration: none;
   transition: var(--transition);
   border-left: 3px solid transparent;
+  position: relative;
 }
 
 .nav-item:hover {
@@ -176,6 +177,20 @@
   height: 2px;
   background-color: var(--text-light);
   transition: var(--transition);
+}
+
+.news-count {
+  display: flex;
+position: absolute;
+right: 20px;
+background-color: var(--unread-color);
+padding: 2px;
+width: 2rem;
+height:2rem;
+border-radius: 50%;
+justify-content: center;
+align-items: center;
+color: var(--text-primary);
 }
 
 .mobile-menu-btn:hover .hamburger-line {
