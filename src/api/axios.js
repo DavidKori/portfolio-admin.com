@@ -178,6 +178,7 @@ export const messagesAPI = {
   get: (id) => api.get(`/messages/${id}`),
   delete: (id) => api.delete(`/messages/${id}`),
   markAsRead: (id) => api.put(`/messages/${id}/read`,{read:true}),
+  getUnread:(id) => api.get(`/messages/${id}/unread`)
 };
 
 export default api;

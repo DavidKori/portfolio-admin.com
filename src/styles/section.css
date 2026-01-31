@@ -932,6 +932,15 @@
   font-size: 14px;
   min-width: 120px;
 }
+.unreadMsg-container {
+  background-color: var(--unread-color);
+  margin: 5px 0px;
+  width:fit-content;
+  padding: 5px;
+  border-radius: 5px;
+  justify-self: end;
+
+}
 
 .messages-layout {
   display: grid;

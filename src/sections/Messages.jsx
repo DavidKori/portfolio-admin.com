@@ -15,10 +15,13 @@ const Messages = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all'); // 'all', 'read', 'unread'
   const { showSuccess, showError } = useToast();
+  const [showUnread,setShowUnread] = useState([])
+  const [unreadMessagesLength,setUnreadMessagesLength] = useState(0)
 
   useEffect(() => {
     fetchMessages();
   }, []);
+
 
   useEffect(() => {
     filterMessages();
@@ -27,7 +30,10 @@ const Messages = () => {
   const fetchMessages = async () => {
     try {
       const response = await messagesAPI.getAll();
+      const response1 = await messagesAPI.getUnread();
       setMessages(response.data || []);
+      setShowUnread(response1.data || []);
+      setUnreadMessagesLength(response1.data.length || 0);
     } catch (error) {
       console.error('Failed to fetch messages:', error);
     } finally {
@@ -76,6 +82,7 @@ const Messages = () => {
   const handleMarkAllAsRead = async () => {
     try {
       const unreadMessages = messages.filter(msg => !msg.read);
+      console.log(unreadMessages)
       await Promise.all(unreadMessages.map(msg => messagesAPI.markAsRead(msg._id)));
       
       setMessages(prev => prev.map(msg => ({ ...msg, read: true })));
@@ -111,6 +118,7 @@ const Messages = () => {
     // Mark as read if it's unread
     if (!message.read) {
       await handleMarkAsRead(message._id);
+      setUnreadMessagesLength(unreadMessagesLength-1)
     }
   };
 
@@ -158,6 +166,11 @@ const Messages = () => {
               Mark All as Read
             </button>
           </div>
+          {unreadMessagesLength!==0 && (
+            <div className='unreadMsg-container'>
+              <span>{unreadMessagesLength} New Messages </span> 
+            </div>
+          )}
         </div>
 
         <div className="messages-layout">

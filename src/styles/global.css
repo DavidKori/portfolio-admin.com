@@ -18,9 +18,11 @@
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --radius: 8px;
   --transition: all 0.3s ease;
+  --unread-color: hsl(120, 80%, 37%);
 }
 
 [data-theme="dark"] {
+  --unread-color:hsl(120, 80%, 27%);
   --bg-primary: #0a0a0a;
   --bg-secondary: #1a1a1a;
   --bg-sidebar: #000000;
