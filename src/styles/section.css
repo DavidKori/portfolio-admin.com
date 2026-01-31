@@ -922,6 +922,7 @@
 }
 .search-input:focus {
   outline: none;
+  border: none;
 }
 .filter-select {
   background: var(--bg-primary);
@@ -931,6 +932,9 @@
   border-radius: 6px;
   font-size: 14px;
   min-width: 120px;
+}
+.filter-select:focus {
+  outline: none;
 }
 .unreadMsg-container {
   background-color: var(--unread-color);
