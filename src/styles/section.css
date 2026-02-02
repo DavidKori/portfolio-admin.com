@@ -844,7 +844,68 @@
   color: var(--text-secondary);
   font-size: 14px;
 }
+@media screen and (max-width: 325px) {
+.contact-preview {
+  padding: 0px;
+}
+.contact-note {
+  text-align: center;
+  font-size: .7rem;
+}
+.contact-label {
+  font-size: 8px;
+  font-weight: bolder;
 
+}
+.contact-value {
+  font-size: 10px;
+}
+.contact-icon {
+  height: 30px;
+  width: 30px;
+}
+.contact-tips > ul > li {
+  font-size: .7rem;
+  margin-bottom: 10px;
+}
+.section-header > h1 {
+  font-size: 1.3rem;
+}
+.preview-section > h2 {
+  font-size:1.3rem;
+}
+.section-header > p {
+  font-size: .7rem;
+}
+}
+@media screen and (max-width: 219px) {
+ .form-actions > .btn-primary {
+  font-size: .7rem;
+  font-weight: bolder;
+ }
+}
+@media screen and (max-width: 180px) {
+.contact-method {
+  flex-direction: column;
+  padding: 0px;
+}
+.section-header > h1 {
+  font-size: 1.2rem;
+}
+.preview-section > h2 {
+  font-size:1.2rem;
+}
+.section-header > p {
+  font-size: .7rem;
+}
+.form-field {
+  margin-bottom: 40px;
+}
+.contact-tips > ul > li {
+  font-size: .7rem;
+  margin-bottom: 10px;
+}
+}
 /* Resume styles */
 .resume-sections {
   display: grid;

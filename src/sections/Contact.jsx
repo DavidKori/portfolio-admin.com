@@ -120,7 +120,7 @@ const Contact = () => {
               <h4>Privacy Tips:</h4>
               <ul>
                 <li>Use a professional email address</li>
-                <li>Consider using a contact form instead of direct email</li>
+                <li>Consider updating your contact information regularly</li>
                 <li>Only share phone number if you're comfortable with calls</li>
                 <li>Be specific about your location or remote availability</li>
               </ul>
