@@ -129,7 +129,7 @@ const SocialLinks = () => {
 
   const getPlatformIcon = (platform) => {
     const platformData = SOCIAL_PLATFORMS.find(p => p.value === platform);
-    return platformData ? platformData.icon : '🔗';
+    return platformData ? platformData.iconUrl ? platformData.iconUrl:platformData.icon : '🔗';
   };
 
   if (loading) {
@@ -226,7 +226,7 @@ const SocialLinks = () => {
                     <img src={link.iconUrl} alt={link.platform} />
                   ) : (
                     <span className="platform-icon">
-                      {getPlatformIcon(link.platform)}
+                      {getPlatformIcon(link.platform).length < 10 ? getPlatformIcon(link.platform) :<img src={getPlatformIcon(link.platform)} alt={link.platform} />}
                     </span>
                   )}
                 </div>
