@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { messagesAPI } from '../api/axios';
 import ConfirmModal from '../components/ConfirmModal';
 import { useToast } from '../hooks/useToast';
 import { formatDateTime, truncateText } from '../utils/helpers';
+import { UnreadContext } from '../context/unreadContext';
 import '../styles/section.css';
 
 const Messages = () => {
+   const { unreadCount, setUnreadCount } = useContext(UnreadContext);
   const [messages, setMessages] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,8 +17,7 @@ const Messages = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all'); // 'all', 'read', 'unread'
   const { showSuccess, showError } = useToast();
-  const [showUnread,setShowUnread] = useState([])
-  const [unreadMessagesLength,setUnreadMessagesLength] = useState(0)
+  const [unreadMessagesLength,setUnreadMessagesLength] = useState(0);
 
   useEffect(() => {
     fetchMessages();
@@ -32,8 +33,8 @@ const Messages = () => {
       const response = await messagesAPI.getAll();
       const response1 = await messagesAPI.getUnread();
       setMessages(response.data || []);
-      setShowUnread(response1.data || []);
       setUnreadMessagesLength(response1.data.length || 0);
+      setUnreadCount(response1.data.length || 0)
     } catch (error) {
       console.error('Failed to fetch messages:', error);
     } finally {
@@ -87,6 +88,7 @@ const Messages = () => {
       
       setMessages(prev => prev.map(msg => ({ ...msg, read: true })));
       setUnreadMessagesLength(0);
+      setUnreadCount(0)
       showSuccess('All messages marked as read');
     } catch (error) {
       showError('Failed to mark all messages as read');
@@ -101,6 +103,7 @@ const Messages = () => {
       setMessages(prev => prev.filter(msg => msg._id !== messageToDelete._id));
       if (!messageToDelete.read){
         setUnreadMessagesLength(unreadMessagesLength - 1);
+        setUnreadCount(unreadCount - 1)
       }
       showSuccess('Message deleted successfully');
       
@@ -123,6 +126,7 @@ const Messages = () => {
     if (!message.read) {
       await handleMarkAsRead(message._id);
       setUnreadMessagesLength(unreadMessagesLength-1);
+      setUnreadCount(unreadCount - 1)
     }
   };
 

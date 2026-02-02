@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
+import { UnreadProvider } from './context/unreadContext';
 import ProtectedRoute from './auth/ProtectedRoute';
 import Loader from './components/Loader';
 import './styles/global.css';
@@ -35,8 +36,10 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <ToastProvider>
+          <UnreadProvider>
           
             <Suspense fallback={<Loader fullscreen />}>
+
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
@@ -44,7 +47,7 @@ function App() {
                 {/* Protected dashboard routes */}
                 <Route path="/dashboard" element={
                   <ProtectedRoute>
-                    <DashboardLayout />
+                    <DashboardLayout/>
                   </ProtectedRoute>
                 }>
                   <Route index element={<DashboardHome />} />
@@ -68,7 +71,7 @@ function App() {
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </Suspense>
-         
+          </UnreadProvider>
         </ToastProvider>
       </AuthProvider>
     </ThemeProvider>
