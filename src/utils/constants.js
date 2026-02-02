@@ -2,7 +2,7 @@ export const API_BASE_URL = 'http://localhost:5000/api';
 
 export const SOCIAL_PLATFORMS = [
   // Programming & Developer
-  { value: 'github', label: 'GitHub', icon: '🐙', iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg' },
+  { value: 'github', label: 'GitHub', icon: '🐙', iconUrl: 'https://img.icons8.com/?size=100&id=efFfwotdkiU5&format=png&color=000000' },
   { value: 'gitlab', label: 'GitLab', icon: '🦊', iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/gitlab.svg' },
   { value: 'bitbucket', label: 'Bitbucket', icon: '🪣', iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/bitbucket.svg' },
   { value: 'stackoverflow', label: 'Stack Overflow', icon: '🔧', iconUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/stackoverflow.svg' },
