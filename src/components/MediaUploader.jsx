@@ -94,7 +94,10 @@ const MediaUploader = ({ onUpload, accept = 'image/*', label, existingUrl }) => 
       >
         {preview ? (
           <div className="preview-container">
-            <img src={preview} alt="Preview" className="preview-image" />
+            {accept===".pdf"? <embed src={preview} type="application/pdf" className='preview-image' width="100%" height="600px"/> :<img src={preview} alt="Preview" className="preview-image" /> }
+            
+            
+
             <div className="preview-overlay">
               <label className="change-file-btn">
                 Change File

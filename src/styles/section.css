@@ -985,7 +985,39 @@
   left: 0;
   color: var(--primary-color);
 }
-
+@media screen and (max-width:295px) {
+  .helper-text {
+    font-size: .8rem;
+  }
+  .section-count {
+    font-size: 1.15rem;
+  }
+  .resume-section > h3 {
+    font-size: 1.2rem;
+  }
+  .resume-preview > h2 {
+    font-size: 1.3rem;
+  }
+  .resume-tips > ul > li {
+    font-size: .9rem;
+  }
+}
+@media screen and (max-width:263px) {
+.resume-section {
+  padding: 0px;
+  width: 80vw;
+  text-wrap: wrap;
+}
+.helper-text {
+  text-wrap: wrap;
+}
+.resume-tips {
+  padding: 0px;
+}
+.resume-file-info > .file-icon {
+  font-size: 25px;
+}
+}
 /* Messages styles */
 .messages-controls {
   margin-bottom: 24px;

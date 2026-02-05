@@ -6,7 +6,7 @@ import '../styles/section.css';
 
 const Resume = () => {
   const [resume, setResume] = useState({
-    resumeUrl: '',
+    resumePdfUrl: '',
     education: [],
     experience: [],
     skills: []
@@ -24,6 +24,7 @@ const Resume = () => {
     try {
       const response = await resumeAPI.get();
       setResume(response.data || resume);
+      console.log(response.data)
     } catch (error) {
       console.error('Failed to fetch resume:', error);
     } finally {
@@ -35,7 +36,7 @@ const Resume = () => {
     setUploadingResume(true);
     try {
       const response = await resumeAPI.uploadResume(formData);
-      setResume(prev => ({ ...prev, resumeUrl: response.data.url }));
+      setResume(prev => ({ ...prev, resumePdfUrl: response.data.url }));
       showSuccess('Resume uploaded successfully');
       return response.data;
     } catch (error) {
@@ -82,7 +83,7 @@ const Resume = () => {
             label="Resume/CV File (PDF)"
             onUpload={handleResumeUpload}
             accept=".pdf"
-            existingUrl={resume.resumeUrl}
+            existingUrl={resume.resumePdfUrl}
             helperText="Upload a PDF file of your resume (max 10MB)"
           />
           
@@ -104,13 +105,13 @@ const Resume = () => {
           <div className="resume-sections">
             <div className="resume-section">
               <h3>📄 Resume File</h3>
-              {resume.resumeUrl ? (
+              {resume.resumePdfUrl ? (
                 <div className="resume-file-info">
                   <div className="file-icon">📄</div>
                   <div className="file-details">
                     <div className="file-name">Resume.pdf</div>
                     <a 
-                      href={resume.resumeUrl} 
+                      href={resume.resumePdfUrl} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="download-link"
